@@ -16,6 +16,13 @@ export default function NavbarSection(props) {
     }
   }
 
+  let LoggedInUserCartUpdateUnique = [];
+  for (let cart of LoggedInUserCartUpdate) {
+    if (LoggedInUserCartUpdateUnique.some(cartUnique => cartUnique.order === cart.order) === false) {
+      LoggedInUserCartUpdateUnique.push(cart);
+    }
+  }
+
   return (
     <>
       <Navbar collapseOnSelect expand="lg" fixed="top" style={{ backgroundColor:"#f5f5f5", boxShadow: "0 0.625rem 1.875rem rgba(0, 0, 0, 0.25)" }}>
@@ -34,8 +41,8 @@ export default function NavbarSection(props) {
                     <div onClick={() => navigate("/cart")} style={{ cursor:"pointer" }} className="position-relative d-inline">
                       <img src="/images/icon-cart.webp" alt="Cart" className="me-5"/>
                       {
-                        LoggedInUserCartUpdate.length > 0 ? (
-                          <span className="position-absolute bg-danger text-light d-flex justify-content-center align-items-center rounded-circle" style={{ width:"1.25rem", height:"1.25rem",top:"0",right:"50%" }}>{LoggedInUserCartUpdate.length}</span> 
+                        LoggedInUserCartUpdateUnique.length > 0 ? (
+                          <span className="position-absolute bg-danger text-light d-flex justify-content-center align-items-center rounded-circle" style={{ width:"1.25rem", height:"1.25rem",top:"0",right:"50%" }}>{LoggedInUserCartUpdateUnique.length}</span> 
                         ) : null
                       }
                     </div>

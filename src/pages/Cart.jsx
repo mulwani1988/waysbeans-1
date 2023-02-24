@@ -120,8 +120,6 @@ export default function ProductDetails(props) {
     props.showModalSuccessTransaction();
   };
 
-  console.log(UserCarts);
-
   return (
     <Container>
       <Row className="custom-margin-top mx-5 responsive-margin-x">
