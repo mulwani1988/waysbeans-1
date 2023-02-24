@@ -1,0 +1,66 @@
+[
+  {
+    "id":1,
+    "isAdmin":true,
+    "name":"Balgruuf The Greater",
+    "email":"balgruuf@whiterun.skyrim",
+    "password":"balgruuf123"
+  },
+  {
+    "id":2,
+    "isAdmin":false,
+    "name":"Ulfric The Stormcloack",
+    "email":"ulfric@windhelm.skyrim",
+    "password":"ulfric456",
+    "address":"Windhelm, Skyrim",
+    "postcode":"23456",
+    "cart":[
+      {
+        "image":"/images/product-rwanda.webp",
+        "order":"RWANDA Beans",
+        "quantity":2
+      },
+      {
+        "image":"/images/product-nicaragua.webp",
+        "order":"NICARAGUA Beans",
+        "quantity":1
+      },
+      {
+        "image":"/images/product-guetemala.webp",
+        "order":"GUETEMALA Beans",
+        "quantity":2
+      }
+    ]
+  },
+  {
+    "id":3,
+    "isAdmin":false,
+    "name":"Elisif The Fair",
+    "email":"elisif@solitude.skyrim",
+    "password":"elisif789",
+    "address":"Solitude, Skyrim",
+    "postcode":"34567",
+    "cart":[]
+  },
+  {
+    "id":4,
+    "isAdmin":false,
+    "name":"Kodhak The Whiteman",
+    "email":"kodhak@whiterun.skyrim",
+    "password":"kodhak134",
+    "address":"Whiterun, Skyrim",
+    "postcode":"12345",
+    "cart":[
+      {
+        "image":"/images/product-ethiopia.webp",
+        "order":"ETHIOPIA Beans",
+        "quantity":1
+      },
+      {
+        "image":"/images/product-nicaragua.webp",
+        "order":"NICARAGUA Beans",
+        "quantity":1
+      }
+    ]
+  }
+]
