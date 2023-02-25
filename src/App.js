@@ -131,7 +131,7 @@ function App() {
     stock: "",
     price: "",
     description: "",
-    photo: "product-rwanda.webp",
+    photo: "",
   });
   const formAddProductHandleOnChange = (e) => {
     setformAddProduct({
@@ -160,7 +160,9 @@ function App() {
       description: "",
       photo: "",
     }));
+    setImageUrl("/images/product-placeholder.webp");
     setmodalSuccessAddProduct(true);
+    navigate("/list-product");
   };
 
   const [formUpdateProduct, setformUpdateProduct] = useState({
