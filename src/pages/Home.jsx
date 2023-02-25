@@ -18,20 +18,22 @@ function Home(props) {
           </Col>
           <Col sm={12} lg={11} className="my-5 d-flex flex-row flex-wrap justify-content-between">
             {
-              Products.map((item) => (
-                <Link to={`/product-details/${item.id}`} key={item.id} className="text-decoration-none mb-5">
-                  <Card className="border-0 product-card rounded-0">
-                    <Card.Img variant="top" src={item.photo} alt={item.name} style={{ borderRadius:"0" }} />
-                    <Card.Body>
-                      <Card.Title className="product-title">{item.name}</Card.Title>
-                      <Card.Text className="product-details">
-                        <div className="product-details">Rp{item.price}</div>
-                        <div className="product-details">Stock: {item.stock}</div>
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                </Link>
-              ))
+              Products.length > 0 ? (
+                Products.map((item) => (
+                  <Link to={`/product-details/${item.id}`} key={item.id} className="text-decoration-none mb-5">
+                    <Card className="border-0 product-card rounded-0">
+                      <Card.Img variant="top" src={item.photo} alt={item.name} style={{ borderRadius:"0" }} />
+                      <Card.Body>
+                        <Card.Title className="product-title">{item.name}</Card.Title>
+                        <Card.Text className="product-details">
+                          <div className="product-details">Rp{item.price}</div>
+                          <div className="product-details">Stock: {item.stock}</div>
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </Link>
+                ))
+              ) : <p className="opacity-50">There are no products to display.</p>
             }
           </Col>
         </Row>
