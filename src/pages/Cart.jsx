@@ -3,6 +3,8 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 export default function ProductDetails(props) {
+  useEffect(() => {document.title = "My Cart | WaysBeans";}, []);
+
   const LoggedInUserCart = props.LoggedInUser.cart;
   const Products = props.Products;
   let userCarts = [];

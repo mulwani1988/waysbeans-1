@@ -15,6 +15,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import AddProductPage from "./pages/AddProductPage";
 import UpdateProductPage from "./pages/UpdateProductPage";
 import ListProduct from "./pages/ListProduct";
+import PageNotFound from "./pages/PageNotFound";
+
 import SuccessAddProductModal from './components/SuccessAddProductModal';
 import SuccessUpdateProductModal from './components/SuccessUpdateProductModal';
 import SuccessTransactionModal from './components/SuccessTransactionModal';
@@ -299,6 +301,7 @@ function App() {
           LoggedInUser={LoggedInUser} 
           SetUsers={SetUsers} 
         />} />
+        <Route path="*" element={<PageNotFound />} />
         <Route path="/" element={<CustomerRoute isLogin={isLogin} />}>
           <Route path="/cart" element={<Cart 
             Users={Users} 

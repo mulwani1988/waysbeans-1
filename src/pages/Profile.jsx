@@ -1,9 +1,13 @@
 import { Container, Row, Col } from 'react-bootstrap';
+import { useEffect } from "react";
 
 export default function Profile(props) {
+  useEffect(() => {document.title = `My Profile | WaysBeans`;}, []);
+
   const Products = props.Products;
   const Transactions = props.Transactions;
   let User = props.LoggedInUser;
+
   let userTransactions = [];
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];

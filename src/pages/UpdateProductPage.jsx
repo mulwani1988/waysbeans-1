@@ -1,7 +1,10 @@
 import { Container, Col, Row, Form, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 function UpdateProductPage(props) {
+  useEffect(() => {document.title = `Update Product | WaysBeans`;}, []);
+
   const params = useParams();
   const Products = props.Products;
   let Product = Products.filter(Product => Product.id === parseInt(params.id));

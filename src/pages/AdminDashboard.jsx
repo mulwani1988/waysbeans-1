@@ -1,6 +1,9 @@
 import { Container, Table } from 'react-bootstrap';
+import { useEffect } from "react";
 
 export default function ProductDetails(props) {
+  useEffect(() => {document.title = "Admin Dashboard | WaysBeans";}, []);
+
   const UsersAll = props.Users;
   const Users = [];
   for (let user of UsersAll) {

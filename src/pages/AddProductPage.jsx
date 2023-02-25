@@ -1,6 +1,8 @@
 import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import {useEffect} from "react";
 
 function AddProductPage(props) {
+  useEffect(() => {document.title = "Add Product| WaysBeans";}, []);
   return (
     <Container>
       <Row className="custom-margin-top justify-content-between mx-5 responsive-margin-x">

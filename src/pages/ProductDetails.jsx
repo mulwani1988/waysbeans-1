@@ -1,13 +1,17 @@
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function ProductDetails(props) {
+
   const navigate = useNavigate();
 
   const params = useParams();
   const Products = props.Products;
   let Product = Products.filter(Product => Product.id === parseInt(params.id));
   Product = Product[0];
+
+  useEffect(() => {document.title = `${Product.name} | WaysBeans`;}, []);
 
   const addToCart = () => {
     if (props.isLogin) {

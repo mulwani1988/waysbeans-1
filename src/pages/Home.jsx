@@ -1,7 +1,10 @@
 import { Container, Col, Row, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 function Home(props) {
+  useEffect(() => {document.title = "WaysBeans";}, []);
+
   const Products = props.Products;
   return (
     <>

@@ -1,8 +1,10 @@
 import { Container, Table, Button } from 'react-bootstrap';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductDetails(props) {
+  useEffect(() => {document.title = "Products List | WaysBeans";}, []);
+
   const navigate = useNavigate();
 
   const [ProductsList, SetProductsList] = useState(props.Products);
