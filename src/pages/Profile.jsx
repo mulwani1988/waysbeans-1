@@ -37,10 +37,6 @@ export default function Profile(props) {
               <div className="font-size-18px mb-4">{User.name}</div>
               <h5 className="product-title font-size-18px">Email</h5>
               <div className="font-size-18px mb-4">{User.email}</div>
-              <h5 className="product-title font-size-18px">Address</h5>
-              <div className="font-size-18px mb-4">{User.address}</div>
-              <h5 className="product-title font-size-18px">Post Code</h5>
-              <div className="font-size-18px mb-4">{User.postcode}</div>
             </div>
           </div>
         </Col>

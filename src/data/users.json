@@ -12,8 +12,6 @@
     "name":"Ulfric The Stormcloack",
     "email":"ulfric@windhelm.skyrim",
     "password":"ulfric456",
-    "address":"Windhelm, Skyrim",
-    "postcode":"23456",
     "cart":[
       {
         "image":"/images/product-rwanda.webp",
@@ -38,8 +36,6 @@
     "name":"Elisif The Fair",
     "email":"elisif@solitude.skyrim",
     "password":"elisif789",
-    "address":"Solitude, Skyrim",
-    "postcode":"34567",
     "cart":[]
   },
   {
@@ -48,8 +44,6 @@
     "name":"Kodhak The Whiteman",
     "email":"kodhak@whiterun.skyrim",
     "password":"kodhak134",
-    "address":"Whiterun, Skyrim",
-    "postcode":"12345",
     "cart":[
       {
         "image":"/images/product-ethiopia.webp",

@@ -38,7 +38,7 @@ textarea {
   font-size: 3rem !important;
 }
 .custom-text-primary {
-  color: #613D2B;
+  color: #613D2B !important;
 }
 .custom-margin-top {
   margin-top: 7.5rem !important;

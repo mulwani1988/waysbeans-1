@@ -17,12 +17,6 @@ export default function RegisterModal(props) {
           <Form.Group className="mb-4" controlId="formText">
             <Form.Control type="text" onChange={props.registerOnChange} name="name" value={props.formRegister.name} placeholder="Full Name" className="font-size-18px p-3 custom-form-input" required/>
           </Form.Group>
-          <Form.Group className="mb-4" controlId="formText">
-            <Form.Control type="text" onChange={props.registerOnChange} name="address" value={props.formRegister.address} placeholder="Address" className="font-size-18px p-3 custom-form-input" required/>
-          </Form.Group>
-          <Form.Group className="mb-4" controlId="formText">
-            <Form.Control type="text" onChange={props.registerOnChange} name="postcode" value={props.formRegister.postcode} placeholder="Post Code" className="font-size-18px p-3 custom-form-input" required/>
-          </Form.Group>
           <Button variant="primary" type="submit" className="custom-btn-primary w-100 fw-bold font-size-18px mb-2 mt-2 p-3">Register</Button>
           <Form.Text className="text-body font-size-18px text-center d-block">
             Already have an account ? Klik <strong onClick={props.changeModal} style={{ cursor:"pointer" }}>Here</strong>

@@ -1,6 +1,6 @@
 import './App.css';
 import NavbarSection from './components/Navbar';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import UsersData from "./data/users.json";
@@ -26,7 +26,6 @@ import CustomerRoute from "./components/CustomerRoute";
 import AdminRoute from "./components/AdminRoute";
 
 function App() {
-  useEffect(() => {document.title = "WaysBeans";}, []);
   const navigate = useNavigate();
 
   const [Users, SetUsers] = useState(UsersData);
@@ -84,8 +83,6 @@ function App() {
     name: "",
     email: "",
     password: "",
-    address: "",
-    postcode: "",
     cart: [],
   });
   const formRegisterHandleOnChange = (e) => {
@@ -111,8 +108,6 @@ function App() {
       name: "",
       email: "",
       password: "",
-      address: "",
-      postcode: "",
     }));
 
     setModalRegisterShow(false);

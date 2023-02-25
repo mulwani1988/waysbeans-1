@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import PaymentModal from '../components/PaymentModal';
 
 export default function ProductDetails(props) {
   useEffect(() => {document.title = "My Cart | WaysBeans";}, []);
+  const navigate = useNavigate();
 
   const LoggedInUserCart = props.LoggedInUser.cart;
   const Products = props.Products;
@@ -96,6 +99,29 @@ export default function ProductDetails(props) {
   useEffect(() => {
     totalPrice();
   });
+
+  const [formPayment, setformPayment] = useState({
+    address: "",
+    postcode: "",
+  });
+  const formPaymentHandleOnChange = (e) => {
+    setformPayment({
+      ...formPayment,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const formPaymentHandleOnSubmit = (e) => {
+    e.preventDefault();
+    handlePay();
+    setformPayment((formUpdateProduct) => ({
+      ...formPayment,
+      address: "",
+      postcode: "",
+    }));
+    props.showModalSuccessTransaction();
+    navigate("/profile");
+  };
+
   const handlePay = () => {
     let updatedTransactions = props.Transactions;
     for (let transaction of UserCarts) {
@@ -105,6 +131,8 @@ export default function ProductDetails(props) {
       transaction.date = `${DateFull.getDay()} ${months[DateFull.getMonth()]} ${DateFull.getFullYear()}`;
       transaction.id = updatedTransactions.length + 1;
       transaction.status = "Success";
+      transaction.address = formPayment.address;
+      transaction.postcode = formPayment.postcode;
       updatedTransactions.push(transaction);
     }
     updatedTransactions = updatedTransactions.map(({price, image, ...rest}) => rest);
@@ -119,67 +147,80 @@ export default function ProductDetails(props) {
       return user;
     });
     props.SetUsers(updatedUsers);
-    props.showModalSuccessTransaction();
+    setModalPaymentShow(true);
   };
+  
+  const [modalPaymentShow, setModalPaymentShow] = useState(false);
 
   return (
-    <Container>
-      <Row className="custom-margin-top mx-5 responsive-margin-x">
-        <h1 className="px-0 product-title">My Cart</h1>
-        <p className="px-0 font-size-18px custom-text-primary">Review Your Order</p>
-        <Row className="justify-content-between align-items-start px-0">
-          <Col xs={12} lg={7}>
-          {
-            UserCarts.length > 0 ? (
-              UserCarts.map((item, index) => (
-                <Col xs={12} className="py-4 px-0 mb-4" style={{ borderTop:"1px solid #613D2B",borderBottom:"1px solid #613D2B" }}>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="d-flex flex-wrap align-items-center">
-                      <img src={item.image} alt={item.order} className="me-3" style={{ width:"7.5rem"}}/>
-                      <div className="">
-                        <h3 className="product-title font-size-18px mb-4">{item.order}</h3>
-                        <div className="d-flex align-items-center">
-                          <img src="/images/icon-decrease.webp" alt="Decrease Button" onClick={() => decreaseQuantity(index)} style={{ cursor:"pointer" }}/>
-                          <span className="font-size-18px custom-text-primar px-3 mx-3 rounded" style={{ backgroundColor:"#F6E6DA" }}>{item.quantity}</span>
-                          <img src="/images/icon-increase.webp" alt="Increase Button" onClick={() => increaseQuantity(index)} style={{ cursor:"pointer" }}/>
+    <>
+      <PaymentModal 
+        show={modalPaymentShow} 
+        onHide={() => {
+          setModalPaymentShow(false);
+        }} 
+        total={totalPrice()}
+        qty={totalQuantity()} 
+        formPayment={formPayment} 
+        PaymentOnChange={(e) => formPaymentHandleOnChange(e)}
+        PaymentOnSubmit={(e) => formPaymentHandleOnSubmit(e)}
+      />
+      <Container>
+        <Row className="custom-margin-top mx-5 responsive-margin-x">
+          <h1 className="px-0 product-title">My Cart</h1>
+          <p className="px-0 font-size-18px custom-text-primary">Review Your Order</p>
+          <Row className="justify-content-between align-items-start px-0">
+            <Col xs={12} lg={7}>
+            {
+              UserCarts.length > 0 ? (
+                UserCarts.map((item, index) => (
+                  <Col xs={12} className="py-4 px-0 mb-4" style={{ borderTop:"1px solid #613D2B",borderBottom:"1px solid #613D2B" }}>
+                    <div className="d-flex justify-content-between align-items-center">
+                      <div className="d-flex flex-wrap align-items-center">
+                        <img src={item.image} alt={item.order} className="me-3" style={{ width:"7.5rem"}}/>
+                        <div className="">
+                          <h3 className="product-title font-size-18px mb-4">{item.order}</h3>
+                          <div className="d-flex align-items-center">
+                            <img src="/images/icon-decrease.webp" alt="Decrease Button" onClick={() => decreaseQuantity(index)} style={{ cursor:"pointer" }}/>
+                            <span className="font-size-18px custom-text-primar px-3 mx-3 rounded" style={{ backgroundColor:"#F6E6DA" }}>{item.quantity}</span>
+                            <img src="/images/icon-increase.webp" alt="Increase Button" onClick={() => increaseQuantity(index)} style={{ cursor:"pointer" }}/>
+                          </div>
                         </div>
                       </div>
+                      <div>
+                        <div className="product-details font-size-18px mb-4">Rp{item.price}</div>
+                        <div className="text-end"><img src="/images/icon-delete.webp" alt="Delete Order" onClick={() => deleteCart(index)} style={{ cursor:"pointer" }}/></div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="product-details font-size-18px mb-4">Rp{item.price}</div>
-                      <div className="text-end"><img src="/images/icon-delete.webp" alt="Delete Order" onClick={() => deleteCart(index)} style={{ cursor:"pointer" }}/></div>
-                    </div>
+                  </Col>
+                ))
+              ) : <p className="opacity-50">There are no items in your cart.</p>
+            }
+            </Col>
+            {
+              UserCarts.length > 0 ? (
+                <Col xs={12} lg={4} className="py-4 px-0 ms-2" style={{ borderTop:"1px solid #613D2B" }}>
+                  <div className="d-flex justify-content-between mb-4 font-size-18px">
+                    <div className="product-details">Subtotal</div>
+                    <div className="product-details">Rp{totalPrice()}</div>
+                  </div>
+                  <div className="d-flex justify-content-between pb-4 font-size-18px" style={{ borderBottom:"1px solid #613D2B" }}>
+                    <div className="product-details">Qty</div>
+                    <div className="product-details">{totalQuantity()}</div>
+                  </div>
+                  <div className="d-flex justify-content-between mt-4 font-size-18px">
+                    <div className="product-details fw-bold">Total</div>
+                    <div className="product-details fw-bold">Rp{totalPrice()}</div>
+                  </div>
+                  <div className="d-flex justify-content-end mt-5">
+                    <Button variant="primary" onClick={setModalPaymentShow} size="lg" className="custom-btn-primary fw-bold font-size-18px w-75">Pay</Button>
                   </div>
                 </Col>
-              ))
-            ) : <p className="opacity-50">There are no items in your cart.</p>
-          }
-          </Col>
-          {
-            UserCarts.length > 0 ? (
-              <Col xs={12} lg={4} className="py-4 px-0 ms-2" style={{ borderTop:"1px solid #613D2B" }}>
-                <div className="d-flex justify-content-between mb-4 font-size-18px">
-                  <div className="product-details">Subtotal</div>
-                  <div className="product-details">Rp{totalPrice()}</div>
-                </div>
-                <div className="d-flex justify-content-between pb-4 font-size-18px" style={{ borderBottom:"1px solid #613D2B" }}>
-                  <div className="product-details">Qty</div>
-                  <div className="product-details">{totalQuantity()}</div>
-                </div>
-                <div className="d-flex justify-content-between mt-4 font-size-18px">
-                  <div className="product-details fw-bold">Total</div>
-                  <div className="product-details fw-bold">Rp{totalPrice()}</div>
-                </div>
-                <div className="d-flex justify-content-end mt-5">
-                  <Link to="/profile" className="w-75">
-                    <Button variant="primary" onClick={handlePay} size="lg" className="custom-btn-primary fw-bold font-size-18px w-100">Pay</Button>
-                  </Link>
-                </div>
-              </Col>
-            ) : null
-          }
+              ) : null
+            }
+          </Row>
         </Row>
-      </Row>
-    </Container>
+      </Container>
+    </>
   )
 }

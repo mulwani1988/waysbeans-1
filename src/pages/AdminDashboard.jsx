@@ -16,8 +16,6 @@ export default function ProductDetails(props) {
     for (let user of Users) {
       if (transaction.customerId === user.id) {
         transaction.name = user.name;
-        transaction.address = user.address;
-        transaction.postcode = user.postcode;
         transaction.date = new Date(transaction.date);
       }
     }

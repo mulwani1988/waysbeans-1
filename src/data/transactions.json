@@ -5,7 +5,9 @@
     "order":"RWANDA Beans",
     "status":"Waiting Approve",
     "date":"7 March 2020",
-    "quantity":4
+    "quantity":4,
+    "address":"Windhelm, Skyrim",
+    "postcode":67890
   },
   {
     "id":2,
@@ -13,7 +15,9 @@
     "order":"ETHIOPIA Beans",
     "status":"Success",
     "date":"5 April 2020",
-    "quantity":3
+    "quantity":3,
+    "address":"Windhelm, Skyrim",
+    "postcode":67890
   },
   {
     "id":3,
@@ -21,7 +25,9 @@
     "order":"GUETEMALA Beans",
     "status":"Cancel",
     "date":"6 July 2020",
-    "quantity":6
+    "quantity":6,
+    "address":"Solitude, Skyrim",
+    "postcode":12345
   },
   {
     "id":4,
@@ -29,7 +35,9 @@
     "order":"NICARAGUA Beans",
     "status":"Complete",
     "date":"12 March 2020",
-    "quantity":1
+    "quantity":1,
+    "address":"Whiterun, Skyrim",
+    "postcode":24680
   },
   {
     "id":5,
@@ -37,7 +45,9 @@
     "order":"RWANDA Beans",
     "status":"Cancel",
     "date":"11 April 2020",
-    "quantity":2
+    "quantity":2,
+    "address":"Solitude, Skyrim",
+    "postcode":12345
   },
   {
     "id":6,
@@ -45,7 +55,9 @@
     "order":"GUETEMALA Beans",
     "status":"Cancel",
     "date":"27 January 2020",
-    "quantity":3
+    "quantity":3,
+    "address":"Windhelm, Skyrim",
+    "postcode":67890
   },
   {
     "id":7,
@@ -53,6 +65,8 @@
     "order":"NICARAGUA Beans",
     "status":"Complete",
     "date":"23 August 2020",
-    "quantity":4
+    "quantity":4,
+    "address":"Windhelm, Skyrim",
+    "postcode":67890
   }
 ]
