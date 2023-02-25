@@ -28,6 +28,7 @@ export default function ProductDetails(props) {
         return user;
       });
       props.SetUsers(updatedUsers);
+      props.setmodalSuccessAddCart();
       navigate("/");
     }
     else props.showModalLogin();

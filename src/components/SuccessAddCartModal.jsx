@@ -1,11 +1,11 @@
 import { Modal } from "react-bootstrap";
 
-export default function SuccessAddProductModal(props) {
+export default function SuccessAddCartModal(props) {
   return (
     <>
       <Modal {...props} size="lg" aria-labelledby="success-add-product-modal" centered>
         <Modal.Body className="p-5">
-          <p className="font-size-24px text-center" style={{ color:"#E83939" }}>Sorry, the email you entered was not registered, please register first.</p>
+          <p className="font-size-24px text-center" style={{ color:"#469F74" }}>Success Add Product to Cart.</p>
         </Modal.Body>
       </Modal>
     </>

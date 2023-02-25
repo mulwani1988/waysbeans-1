@@ -20,6 +20,7 @@ import PageNotFound from "./pages/PageNotFound";
 import SuccessAddProductModal from "./components/SuccessAddProductModal";
 import SuccessUpdateProductModal from "./components/SuccessUpdateProductModal";
 import SuccessTransactionModal from "./components/SuccessTransactionModal";
+import SuccessAddCartModal from "./components/SuccessAddCartModal";
 import LoginModal from "./components/LoginModal";
 import RegisterModal from "./components/RegisterModal";
 import CustomerRoute from "./components/CustomerRoute";
@@ -209,6 +210,7 @@ function App() {
   const [modalSuccessUpdateProduct, setmodalSuccessUpdateProduct] = useState(false);
   const [modalSuccessAddProduct, setmodalSuccessAddProduct] = useState(false);
   const [modalSuccessTransaction, setmodalSuccessTransaction] = useState(false);
+  const [modalSuccessAddCart, setmodalSuccessAddCart] = useState(false);
   const [modalLoginShow, setModalLoginShow] = useState(false);
   const [modalRegisterShow, setModalRegisterShow] = useState(false);
   const [modalUnregisteredEmail, setModalUnregisteredEmail] = useState(false);
@@ -237,6 +239,10 @@ function App() {
       <SuccessUpdateProductModal 
           show={modalSuccessUpdateProduct} 
           onHide={() => setmodalSuccessUpdateProduct(false)} 
+      />
+      <SuccessAddCartModal 
+          show={modalSuccessAddCart} 
+          onHide={() => setmodalSuccessAddCart(false)} 
       />
       <LoginModal 
         show={modalLoginShow} 
@@ -288,8 +294,7 @@ function App() {
       />
       <UnregisteredEmailModal 
         show={modalUnregisteredEmail} 
-        onHide={() => setModalUnregisteredEmail(false)} 
-        changeModal={() => {
+        onHide={() => {
           setModalUnregisteredEmail(false);
           setModalRegisterShow(true);
         }} 
@@ -328,6 +333,7 @@ function App() {
           Users={Users} 
           LoggedInUser={LoggedInUser} 
           SetUsers={SetUsers} 
+          setmodalSuccessAddCart={() => setmodalSuccessAddCart(true)}
         />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path="/" element={<CustomerRoute isLogin={isLogin} />}>
