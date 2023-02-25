@@ -16,9 +16,7 @@ export default function Profile(props) {
       for (let product of Products) {
         if (product.name === transaction.order) {
           let userTransaction = {id:transaction.id, name:transaction.order, status:transaction.status, date:new Date(transaction.date), quantity:transaction.quantity, image:product.photo, price:product.price, total:product.price*transaction.quantity};
-          if (userTransaction.status !== "Cancel") {
-            userTransactions.push(userTransaction);
-          }
+          if (userTransaction.status !== "Cancel") userTransactions.push(userTransaction);
         }
       }
     }

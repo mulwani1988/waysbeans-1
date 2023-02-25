@@ -12,26 +12,16 @@ export default function ProductDetails(props) {
   const Products = props.Products;
   let userCarts = [];
   for (let cart of LoggedInUserCart) {
-    for (let product of Products) {
-      if (product.name === cart.order) {
-        cart.price = product.price;
-      }
-    }
+    for (let product of Products) if (product.name === cart.order) cart.price = product.price;
     userCarts.push(cart);
   }
   let userCartUpdate = [];
-  for (let cart of userCarts) {
-    if(Products.some(product => product.name === cart.order)) {
-      userCartUpdate.push(cart);
-    }
-  }
+  for (let cart of userCarts) if(Products.some(product => product.name === cart.order)) userCartUpdate.push(cart);
 
   const [UserCarts, SetUserCarts] = useState(userCartUpdate);
   const increaseQuantity = (index) => {
     const updatedUserCarts = UserCarts.map((cart) => {
-      if (UserCarts.indexOf(cart) === index) {
-        cart.quantity += 1;
-      }
+      if (UserCarts.indexOf(cart) === index) cart.quantity += 1;
       return cart;
     });
     SetUserCarts(updatedUserCarts);
@@ -48,11 +38,7 @@ export default function ProductDetails(props) {
   };
   const decreaseQuantity = (index) => {
     const updatedUserCarts = UserCarts.map((cart) => {
-      if (UserCarts.indexOf(cart) === index) {
-        if (cart.quantity > 0) {
-          cart.quantity -= 1;
-        }
-      }
+      if (UserCarts.indexOf(cart) === index) if (cart.quantity > 0) cart.quantity -= 1;
       return cart;
     });
     SetUserCarts(updatedUserCarts);

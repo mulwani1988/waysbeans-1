@@ -1,5 +1,5 @@
-import './App.css';
-import NavbarSection from './components/Navbar';
+import "./App.css";
+import NavbarSection from "./components/Navbar";
 import { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
@@ -17,13 +17,15 @@ import UpdateProductPage from "./pages/UpdateProductPage";
 import ListProduct from "./pages/ListProduct";
 import PageNotFound from "./pages/PageNotFound";
 
-import SuccessAddProductModal from './components/SuccessAddProductModal';
-import SuccessUpdateProductModal from './components/SuccessUpdateProductModal';
-import SuccessTransactionModal from './components/SuccessTransactionModal';
-import LoginModal from './components/LoginModal';
-import RegisterModal from './components/RegisterModal';
+import SuccessAddProductModal from "./components/SuccessAddProductModal";
+import SuccessUpdateProductModal from "./components/SuccessUpdateProductModal";
+import SuccessTransactionModal from "./components/SuccessTransactionModal";
+import LoginModal from "./components/LoginModal";
+import RegisterModal from "./components/RegisterModal";
 import CustomerRoute from "./components/CustomerRoute";
 import AdminRoute from "./components/AdminRoute";
+import UnregisteredEmailModal from "./components/UnregisteredEmailModal";
+import WrongPasswordModal from "./components/WrongPasswordModal";
 
 function App() {
   const navigate = useNavigate();
@@ -61,11 +63,14 @@ function App() {
           id: User.id,
         }));
       }
-      else setIsLogin(false);
+      else {
+        setIsLogin(false);
+        setModalWrongPassword(true);
+      }
     }
     else {
       setIsLogin(false);
-      setModalRegisterShow(true);
+      setModalUnregisteredEmail(true);
     }
 
     setFormLogin((formLogin) => ({
@@ -182,11 +187,8 @@ function App() {
       ...formUpdateProduct,
       photo: imageUrl,
     };
-    const indexToDelete = Products.findIndex(item => item.id === newProductWithImage.id);
-    if (indexToDelete !== -1) {
-      Products.splice(indexToDelete, 1);
-      Products.splice(indexToDelete, 0, newProductWithImage);
-    }
+    const indexToUpdate = Products.findIndex(item => item.id === newProductWithImage.id);
+    if (indexToUpdate !== -1) Products.splice(indexToUpdate, 1, newProductWithImage);
     SetProducts([...Products]);
     
     setformUpdateProduct((formUpdateProduct) => ({
@@ -206,6 +208,8 @@ function App() {
   const [modalSuccessTransaction, setmodalSuccessTransaction] = useState(false);
   const [modalLoginShow, setModalLoginShow] = useState(false);
   const [modalRegisterShow, setModalRegisterShow] = useState(false);
+  const [modalUnregisteredEmail, setModalUnregisteredEmail] = useState(false);
+  const [modalWrongPassword, setModalWrongPassword] = useState(false);
 
   return (
     <>
@@ -268,6 +272,21 @@ function App() {
         formRegister={formRegister} 
         registerOnChange={(e) => formRegisterHandleOnChange(e)}
         registerOnSubmit={(e) => formRegisterHandleOnSubmit(e)}
+      />
+      <UnregisteredEmailModal 
+        show={modalUnregisteredEmail} 
+        onHide={() => setModalUnregisteredEmail(false)} 
+        changeModal={() => {
+          setModalUnregisteredEmail(false);
+          setModalRegisterShow(true);
+        }} 
+      />
+      <WrongPasswordModal 
+        show={modalWrongPassword} 
+        onHide={() => {
+          setModalWrongPassword(false);
+          setModalLoginShow(true);
+        }} 
       />
       <NavbarSection 
         LoggedInUser={LoggedInUser} 

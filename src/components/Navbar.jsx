@@ -10,18 +10,10 @@ export default function NavbarSection(props) {
   if (props.isLogin === true && props.isAdmin === false && props.Users.find(data => data.id === props.LoggedInUser.id).cart.length > 0) LoggedInUserCart = props.Users.find(data => data.id === props.LoggedInUser.id).cart;
 
   let LoggedInUserCartUpdate = [];
-  for (let cart of LoggedInUserCart) {
-    if(props.Products.some(product => product.name === cart.order)) {
-      LoggedInUserCartUpdate.push(cart);
-    }
-  }
+  for (let cart of LoggedInUserCart) if(props.Products.some(product => product.name === cart.order)) LoggedInUserCartUpdate.push(cart);
 
   let LoggedInUserCartUpdateUnique = [];
-  for (let cart of LoggedInUserCartUpdate) {
-    if (LoggedInUserCartUpdateUnique.some(cartUnique => cartUnique.order === cart.order) === false) {
-      LoggedInUserCartUpdateUnique.push(cart);
-    }
-  }
+  for (let cart of LoggedInUserCartUpdate) if (LoggedInUserCartUpdateUnique.some(cartUnique => cartUnique.order === cart.order) === false) LoggedInUserCartUpdateUnique.push(cart);
 
   return (
     <>

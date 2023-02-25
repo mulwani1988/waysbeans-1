@@ -6,9 +6,7 @@ export default function ProductDetails(props) {
 
   const UsersAll = props.Users;
   const Users = [];
-  for (let user of UsersAll) {
-    if (user.isAdmin !== true) Users.push(user);
-  }
+  for (let user of UsersAll) if (user.isAdmin !== true) Users.push(user);
   const Transactions = props.Transactions;
 
   let usersTransactions = [];
