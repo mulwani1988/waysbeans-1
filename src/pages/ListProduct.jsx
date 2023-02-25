@@ -29,7 +29,7 @@ export default function ProductDetails(props) {
       <h1 className="custom-margin-top product-title font-size-36px mb-5">List Product</h1>
       {
         ProductsList.length > 0 ? (
-          <Table responsive bordered hover className="mx-auto w-100">
+          <Table responsive bordered hover className="mx-auto w-100 animate__animated animate__fadeIn">
             <thead style={{ backgroundColor:"#E5E5E5" }}>
               <tr>
                 <th>No.</th>

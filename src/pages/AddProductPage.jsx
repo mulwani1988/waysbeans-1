@@ -6,7 +6,7 @@ function AddProductPage(props) {
   return (
     <Container>
       <Row className="custom-margin-top justify-content-between mx-5 responsive-margin-x">
-        <Col xs={12} lg={6} className="mb-4">
+        <Col xs={12} lg={6} className="mb-4 animate__animated animate__slideInLeft">
           <h1 className="fw-bold custom-text-primary mb-5">Add Product</h1>
           <Form onSubmit={props.AddProductOnSubmit}>
             <Form.Group className="mb-4" controlId="formName">
@@ -33,7 +33,7 @@ function AddProductPage(props) {
             </div>
           </Form>
         </Col>
-        <Col xs={12} lg={5} className="mb-4">
+        <Col xs={12} lg={5} className="mb-4 animate__animated animate__slideInRight">
           <img src={props.imageUrl} alt="GUATEMALA Beans" className="w-100"/>
         </Col>
       </Row>

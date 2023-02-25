@@ -26,6 +26,8 @@ import CustomerRoute from "./components/CustomerRoute";
 import AdminRoute from "./components/AdminRoute";
 import UnregisteredEmailModal from "./components/UnregisteredEmailModal";
 import WrongPasswordModal from "./components/WrongPasswordModal";
+import SuccessLoginToast from "./components/SuccessLoginToast";
+import SuccessLogoutToast from "./components/SuccessLogoutToast";
 
 function App() {
   const navigate = useNavigate();
@@ -62,6 +64,7 @@ function App() {
         setLoggedInUser(() => ({
           id: User.id,
         }));
+        settoastSuccessLogin(true);
       }
       else {
         setIsLogin(false);
@@ -210,9 +213,19 @@ function App() {
   const [modalRegisterShow, setModalRegisterShow] = useState(false);
   const [modalUnregisteredEmail, setModalUnregisteredEmail] = useState(false);
   const [modalWrongPassword, setModalWrongPassword] = useState(false);
+  const [toastSuccessLogin, settoastSuccessLogin] = useState(false);
+  const [toastSuccessLogout, settoastSuccessLogout] = useState(false);
 
   return (
     <>
+      <SuccessLoginToast 
+        show={toastSuccessLogin} 
+        onClose={() => settoastSuccessLogin(false)} 
+      />
+      <SuccessLogoutToast 
+        show={toastSuccessLogout} 
+        onClose={() => settoastSuccessLogout(false)} 
+      />
       <SuccessTransactionModal 
           show={modalSuccessTransaction} 
           onHide={() => setmodalSuccessTransaction(false)} 
@@ -299,6 +312,7 @@ function App() {
         logout={() => {
           setIsLogin(false);
           setIsAdmin(false);
+          settoastSuccessLogout(true);
         }} 
         admin={() => setIsAdmin(true)} 
       />

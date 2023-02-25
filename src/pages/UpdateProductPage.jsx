@@ -13,7 +13,7 @@ function UpdateProductPage(props) {
   return (
     <Container>
       <Row className="custom-margin-top justify-content-between mx-5 responsive-margin-x">
-        <Col xs={12} lg={6} className="mb-4">
+        <Col xs={12} lg={6} className="mb-4 animate__animated animate__slideInLeft">
           <h1 className="fw-bold custom-text-primary mb-5">Update Product</h1>
           <Form onSubmit={props.UpdateProductOnSubmit}>
             <Form.Group className="mb-4 d-none" controlId="formId">
@@ -43,7 +43,7 @@ function UpdateProductPage(props) {
             </div>
           </Form>
         </Col>
-        <Col xs={12} lg={5} className="mb-4">
+        <Col xs={12} lg={5} className="mb-4 animate__animated animate__slideInRight">
           <img src={props.imageUrl} alt={Product.name} className="w-100"/>
         </Col>
       </Row>

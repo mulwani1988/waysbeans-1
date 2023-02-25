@@ -26,7 +26,7 @@ export default function Profile(props) {
   return (
     <Container>
       <Row className="custom-margin-top mx-5 responsive-margin-x justify-content-between">
-        <Col xs={12} lg={6} className="mb-5">
+        <Col xs={12} lg={6} className="mb-5 animate__animated animate__slideInLeft">
           <h2 className="product-title mb-4 font-size-24px">My Profile</h2>
           <div className="d-flex flex-wrap align-items-start">
             <img id="profile-picture" src="/images/profile-picture.webp" alt="Profile" className="rounded me-4 mb-4" style={{ width:"11rem" }}/>
@@ -38,7 +38,7 @@ export default function Profile(props) {
             </div>
           </div>
         </Col>
-        <Col xs={12} lg={6}>
+        <Col xs={12} lg={6} className="animate__animated animate__slideInRight">
           <h2 className="product-title mb-4 font-size-24px">My Transaction</h2>
           {
             userTransactions.length > 0 ? (

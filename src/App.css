@@ -3,6 +3,9 @@
   box-sizing: border-box;
   transition: all 0.25s ease-in;
 }
+html, body {
+  overflow-x: hidden !important;
+}
 ::placeholder {
   color: rgba(97, 61, 43, 0.5) !important;
   opacity: 1 !important;

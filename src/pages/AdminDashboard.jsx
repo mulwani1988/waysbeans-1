@@ -24,7 +24,7 @@ export default function ProductDetails(props) {
   return (
     <Container>
       <h1 className="custom-margin-top product-title font-size-36px mb-5">Income Transaction</h1>
-      <Table responsive bordered hover className="mx-auto">
+      <Table responsive bordered hover className="mx-auto animate__animated animate__fadeIn">
         <thead style={{ backgroundColor:"#E5E5E5" }}>
           <tr>
             <th>No.</th>
