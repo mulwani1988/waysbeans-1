@@ -5,12 +5,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function NavbarSection(props) {
   const navigate = useNavigate();
+  const LoggedInUser = props.Users.find(data => data.id === props.LoggedInUserId);
 
   let LoggedInUserCart = [];
-  if (props.isLogin === true && props.isAdmin === false && props.Users.find(data => data.id === props.LoggedInUserId).cart.length > 0) LoggedInUserCart = props.Users.find(data => data.id === props.LoggedInUserId).cart;
+  if (props.isLogin === true && props.isAdmin === false && LoggedInUser.cart.length > 0) LoggedInUserCart = props.Users.find(data => data.id === props.LoggedInUserId).cart;
 
   let LoggedInUserCartUpdate = [];
-  for (let cart of LoggedInUserCart) if(props.Products.some(product => product.name === cart.order)) LoggedInUserCartUpdate.push(cart);
+  for (let cart of LoggedInUserCart) if (props.Products.some(product => product.name === cart.order)) LoggedInUserCartUpdate.push(cart);
 
   let LoggedInUserCartUpdateUnique = [];
   for (let cart of LoggedInUserCartUpdate) if (LoggedInUserCartUpdateUnique.some(cartUnique => cartUnique.order === cart.order) === false) LoggedInUserCartUpdateUnique.push(cart);
@@ -40,7 +41,7 @@ export default function NavbarSection(props) {
                     </div>
                     <Dropdown className="d-inline">
                       <Dropdown.Toggle id="profile-menu" className="border-0" style={{ backgroundColor:"transparent" }}>
-                        <img src="/images/profile-picture-placeholder.webp" alt="Profile Icon" className="rounded-circle" style={{ cursor:"pointer", objectFit:"cover", width:"3.75rem", height:"3.75rem" }}/>
+                        <img src={LoggedInUser.picture} alt="Profile Icon" className="rounded-circle" style={{ cursor:"pointer", objectFit:"cover", width:"3.75rem", height:"3.75rem" }}/>
                       </Dropdown.Toggle>
                       <Dropdown.Menu className="border-0" style={{ boxShadow:"0px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 20px rgba(0, 0, 0, 0.25)" }}>
                         <Dropdown.Item onClick={() => navigate("/profile")} className="fw-bold d-flex align-items-center py-2">

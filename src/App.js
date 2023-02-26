@@ -86,6 +86,7 @@ function App() {
   const [formRegister, setFormRegister] = useState({
     id:0,
     isAdmin: false,
+    picture: "/images/profile-picture-placeholder.webp",
     name: "",
     email: "",
     password: "",
@@ -111,9 +112,13 @@ function App() {
 
     setFormRegister((formRegister) => ({
       ...formRegister,
+      id:0,
+      isAdmin: false,
+      picture: "/images/profile-picture-placeholder.webp",
       name: "",
       email: "",
       password: "",
+      cart: [],
     }));
 
     setModalRegisterShow(false);
@@ -349,7 +354,8 @@ function App() {
             showModalSuccessTransaction={() => setmodalSuccessTransaction(true)} 
           />} />
           <Route path="/profile" element={<Profile 
-            Users={Users}
+            Users={Users} 
+            SetUsers={SetUsers} 
             LoggedInUserId={LoggedInUserId} 
             Transactions={Transactions} 
             Products={Products}

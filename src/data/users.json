@@ -2,6 +2,7 @@
   {
     "id":1,
     "isAdmin":true,
+    "picture": "/images/profile-picture-1.webp",
     "name":"Balgruuf The Greater",
     "email":"balgruuf@whiterun.skyrim",
     "password":"balgruuf123"
@@ -9,6 +10,7 @@
   {
     "id":2,
     "isAdmin":false,
+    "picture": "/images/profile-picture-2.webp",
     "name":"Ulfric The Stormcloack",
     "email":"ulfric@windhelm.skyrim",
     "password":"ulfric456",
@@ -33,6 +35,7 @@
   {
     "id":3,
     "isAdmin":false,
+    "picture": "/images/profile-picture-3.webp",
     "name":"Elisif The Fair",
     "email":"elisif@solitude.skyrim",
     "password":"elisif789",
@@ -41,6 +44,7 @@
   {
     "id":4,
     "isAdmin":false,
+    "picture": "/images/profile-picture-4.webp",
     "name":"Kodhak The Whiteman",
     "email":"kodhak@whiterun.skyrim",
     "password":"kodhak134",
