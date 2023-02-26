@@ -87,9 +87,21 @@ export default function ProductDetails(props) {
     totalPrice();
   });
 
+  const [paymentProve, setPaymentProve] = useState("/images/product-placeholder.webp");
+
+  const handlePaymentProveUpload = (event) => {
+    const file = event.target.files[0];
+    const paymentProve = URL.createObjectURL(file);
+    setPaymentProve(paymentProve);
+  };
+
   const [formPayment, setformPayment] = useState({
+    name: LoggedInUser.name,
+    email: LoggedInUser.email,
+    phone: "",
     address: "",
     postcode: "",
+    prove: "",
   });
   const formPaymentHandleOnChange = (e) => {
     setformPayment({
@@ -100,10 +112,14 @@ export default function ProductDetails(props) {
   const formPaymentHandleOnSubmit = (e) => {
     e.preventDefault();
     handlePay();
-    setformPayment((formUpdateProduct) => ({
+    setformPayment((formPayment) => ({
       ...formPayment,
+      name: LoggedInUser.name,
+      email: LoggedInUser.email,
+      phone: "",
       address: "",
       postcode: "",
+      prove: "",
     }));
     props.showModalSuccessTransaction();
     navigate("/profile");
@@ -118,12 +134,17 @@ export default function ProductDetails(props) {
       transaction.date = `${DateFull.getDate()} ${months[DateFull.getMonth()]} ${DateFull.getFullYear()}`;
       transaction.id = updatedTransactions.length + 1;
       transaction.status = "Success";
+      transaction.name = formPayment.name;
+      transaction.email = formPayment.email;
+      transaction.phone = formPayment.phone;
       transaction.address = formPayment.address;
       transaction.postcode = formPayment.postcode;
+      transaction.prove = paymentProve;
       updatedTransactions.push(transaction);
     }
 
     updatedTransactions = updatedTransactions.map(({price, image, ...rest}) => rest);
+    console.log(updatedTransactions);
     props.SetTransactions(updatedTransactions);
     const updatedUsers = props.Users.map(user => {
       if (user.id === props.LoggedInUserId) {
@@ -152,6 +173,8 @@ export default function ProductDetails(props) {
         formPayment={formPayment} 
         PaymentOnChange={(e) => formPaymentHandleOnChange(e)}
         PaymentOnSubmit={(e) => formPaymentHandleOnSubmit(e)}
+        handlePaymentProveUpload={handlePaymentProveUpload}
+        paymentProve={paymentProve}
       />
       <Container>
         <Row className="custom-margin-top mx-5 responsive-margin-x">

@@ -132,7 +132,7 @@ textarea {
   .product-transaction img, .product-transaction > div {
     margin-bottom: 1rem;
   }
-  #product-photo-container {
+  #product-photo-container, #payment-prove-container {
     width: 100% !important;
   }
   .button-delete, .button-update {

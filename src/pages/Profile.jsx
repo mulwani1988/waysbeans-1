@@ -21,7 +21,9 @@ export default function Profile(props) {
       }
     }
   }
-  userTransactions.sort((a, b) => b.date - a.date);
+
+  const userTransactionsSorted = [...userTransactions];
+  userTransactionsSorted.sort((a, b) => b.date - a.date);
 
   return (
     <Container>
@@ -29,7 +31,8 @@ export default function Profile(props) {
         <Col xs={12} lg={6} className="mb-5 animate__animated animate__slideInLeft">
           <h2 className="product-title mb-4 font-size-24px">My Profile</h2>
           <div className="d-flex flex-wrap align-items-start">
-            <img id="profile-picture" src="/images/profile-picture.webp" alt="Profile" className="rounded me-4 mb-4" style={{ width:"11rem", height:"14rem", objectFit:"cover" }}/>
+            <img id="profile-picture" src="/images/profile-picture-placeholder.webp" alt="Profile" className="rounded me-4 mb-4" style={{ width:"11rem", height:"14rem", objectFit:"cover" }}/>
+            <input type="file" id="profile-picture-file" className="d-none"></input>
             <div>
               <h5 className="product-title font-size-18px">Full Name</h5>
               <div className="font-size-18px mb-4">{LoggedInUser.name}</div>
@@ -41,8 +44,8 @@ export default function Profile(props) {
         <Col xs={12} lg={6} className="animate__animated animate__slideInRight">
           <h2 className="product-title mb-4 font-size-24px">My Transaction</h2>
           {
-            userTransactions.length > 0 ? (
-              userTransactions.map((item) => (
+            userTransactionsSorted.length > 0 ? (
+              userTransactionsSorted.map((item) => (
                 <Row key={item.id} className="justify-content-between align-items-center p-3 mb-4" style={{ backgroundColor:"#F6E6DA" }}>
                   <Col xs={12} lg={8} className="d-flex flex-wrap justify-content-center align-items-center product-transaction">
                     <img src={item.image} alt={item.name} className="me-3 my-3" style={{ width:"6.75rem", height:"9rem", objectFit:"cover" }}/>

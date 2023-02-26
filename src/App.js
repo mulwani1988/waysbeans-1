@@ -144,15 +144,10 @@ function App() {
   };
   const formAddProductHandleOnSubmit = (e) => {
     e.preventDefault();
-    console.log(Products);
     const lastProductIndex = Products.length - 1;
-    console.log(lastProductIndex);
     const lastProduct = Products[lastProductIndex];
-    console.log(lastProduct);
     const lastProductId = lastProduct.id;
-    console.log(lastProductId);
     const autoId = lastProductId + 1;
-    console.log(autoId);
     const newProductWithAutoId = {
       ...formAddProduct,
       id: autoId,
@@ -331,7 +326,6 @@ function App() {
       />
       <Routes>
         <Route path="/" element={isAdmin ? <AdminDashboard 
-          Users={Users} 
           Transactions={Transactions} 
           /> : <Home Products={Products} />} />
         <Route path="/product-details/:id" element={<ProductDetails 

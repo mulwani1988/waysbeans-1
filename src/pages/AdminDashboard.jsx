@@ -4,22 +4,8 @@ import { useEffect } from "react";
 export default function ProductDetails(props) {
   useEffect(() => {document.title = "Admin Dashboard | WaysBeans";}, []);
 
-  const UsersAll = props.Users;
-  const Users = [];
-  for (let user of UsersAll) if (user.isAdmin !== true) Users.push(user);
-  const Transactions = props.Transactions;
-
-  let usersTransactions = [];
-  for (let transaction of Transactions) {
-    for (let user of Users) {
-      if (transaction.customerId === user.id) {
-        transaction.name = user.name;
-        transaction.date = new Date(transaction.date);
-      }
-    }
-    usersTransactions.push(transaction);
-  }
-  usersTransactions.sort((a, b) => b.date - a.date);
+  let usersTransactions = [...props.Transactions];
+  usersTransactions.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
     <Container>
@@ -29,21 +15,27 @@ export default function ProductDetails(props) {
           <tr>
             <th>No.</th>
             <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
             <th>Address</th>
             <th>Post Code</th>
             <th>Products Order</th>
+            <th>Payment Prove</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
           {
             usersTransactions.map((user, index) => (
-              <tr key={user.id}>
+              <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.phone}</td>
                 <td>{user.address}</td>
                 <td>{user.postcode}</td>
                 <td>{user.order}</td>
+                <td><img src={user.prove} alt={`${user.name} Payment Prove`} style={{ width:"7.5rem", height:"10rem", objectFit:"cover" }}/></td>
                 {
                   user.status === "Waiting Approve" ? <td style={{ color:"#FF9900" }}>{user.status}</td> : null
                 }
