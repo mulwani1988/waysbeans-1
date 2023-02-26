@@ -10,7 +10,7 @@ export default function PaymentModal(props) {
           </h1>
           <Form onSubmit={props.PaymentOnSubmit} className="px-3 pb-3">
             <Form.Group className="mb-4" controlId="formName">
-              <Form.Control type="text" onChange={props.PaymentOnChange} name="address" value={props.formPayment.name} placeholder="Recipient's Name" className="font-size-18px p-3 custom-form-input" required/>
+              <Form.Control type="text" onChange={props.PaymentOnChange} name="name" value={props.formPayment.name} placeholder="Recipient's Name" className="font-size-18px p-3 custom-form-input" required/>
             </Form.Group>
             <Form.Group className="mb-4" controlId="formEmail">
               <Form.Control type="email" onChange={props.PaymentOnChange} name="email" value={props.formPayment.email} placeholder="Recipient's Email" className="font-size-18px p-3 custom-form-input" required/>
