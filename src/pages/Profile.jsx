@@ -29,7 +29,7 @@ export default function Profile(props) {
         <Col xs={12} lg={6} className="mb-5 animate__animated animate__slideInLeft">
           <h2 className="product-title mb-4 font-size-24px">My Profile</h2>
           <div className="d-flex flex-wrap align-items-start">
-            <img id="profile-picture" src="/images/profile-picture.webp" alt="Profile" className="rounded me-4 mb-4" style={{ width:"11rem" }}/>
+            <img id="profile-picture" src="/images/profile-picture.webp" alt="Profile" className="rounded me-4 mb-4" style={{ width:"11rem", height:"14rem", objectFit:"cover" }}/>
             <div>
               <h5 className="product-title font-size-18px">Full Name</h5>
               <div className="font-size-18px mb-4">{LoggedInUser.name}</div>
@@ -45,7 +45,7 @@ export default function Profile(props) {
               userTransactions.map((item) => (
                 <Row key={item.id} className="justify-content-between align-items-center p-3 mb-4" style={{ backgroundColor:"#F6E6DA" }}>
                   <Col xs={12} lg={8} className="d-flex flex-wrap justify-content-center align-items-center product-transaction">
-                    <img src={item.image} alt={item.name} className="me-3 my-3" style={{ width:"6.75rem" }}/>
+                    <img src={item.image} alt={item.name} className="me-3 my-3" style={{ width:"6.75rem", height:"9rem", objectFit:"cover" }}/>
                     <div>
                       <h3 className="product-title font-size-16px my-0">{item.name}</h3>
                       <p className="custom-text-primary font-size-14px"><strong className="custom-text-primary">{days[item.date.getDay()]}</strong>, {item.date.getDate()} {months[item.date.getMonth()]} {item.date.getFullYear()}</p>

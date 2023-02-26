@@ -46,7 +46,7 @@ export default function ProductDetails(props) {
                 ProductsList.map((item, index) => (
                   <tr key={item.id}>
                     <td>{index + 1}</td>
-                    <td><img src={item.photo} alt={item.name} className="w-100"/></td>
+                    <td><img src={item.photo} alt={item.name} style={{ width:"7.5rem", height:"10rem", objectFit:"cover" }}/></td>
                     <td>{item.name}</td>
                     <td>{item.stock}</td>
                     <td>{item.price}</td>

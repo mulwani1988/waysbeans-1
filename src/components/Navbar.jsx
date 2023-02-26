@@ -40,7 +40,7 @@ export default function NavbarSection(props) {
                     </div>
                     <Dropdown className="d-inline">
                       <Dropdown.Toggle id="profile-menu" className="border-0" style={{ backgroundColor:"transparent" }}>
-                        <img src="/images/icon-profile-picture.webp" alt="Profile Icon" style={{ cursor:"pointer" }}/>
+                        <img src="/images/profile-picture.webp" alt="Profile Icon" className="rounded-circle" style={{ cursor:"pointer", objectFit:"cover", width:"3.75rem", height:"3.75rem" }}/>
                       </Dropdown.Toggle>
                       <Dropdown.Menu className="border-0" style={{ boxShadow:"0px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 20px rgba(0, 0, 0, 0.25)" }}>
                         <Dropdown.Item onClick={() => navigate("/profile")} className="fw-bold d-flex align-items-center py-2">
@@ -58,7 +58,7 @@ export default function NavbarSection(props) {
                 ) : (
                   <Dropdown>
                     <Dropdown.Toggle id="profile-menu" className="border-0" style={{ backgroundColor:"transparent" }}>
-                      <img src="/images/icon-profile-picture.webp" alt="Profile Icon" style={{ cursor:"pointer" }}/>
+                    <img src="/images/profile-picture.webp" alt="Profile Icon" className="rounded-circle" style={{ cursor:"pointer", objectFit:"cover", width:"3.75rem", height:"3.75rem" }}/>
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="border-0" style={{ boxShadow:"0px 4px 4px rgba(0, 0, 0, 0.25), 4px 4px 20px rgba(0, 0, 0, 0.25)" }}>
                       <Dropdown.Item onClick={() => navigate("/add-product-page")} className="fw-bold d-flex align-items-center py-2">

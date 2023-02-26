@@ -38,7 +38,7 @@ export default function ProductDetails(props) {
     <Container>
       <Row className="custom-margin-top justify-content-between align-items-center mx-5 mb-5 responsive-margin-x">
         <Col xs={12} lg={5} className="animate__animated animate__slideInLeft">
-          <img src={Product.photo} alt={`${Product.name}`} style={{ width:"100%" }}/>
+          <img src={Product.photo} alt={`${Product.name}`} className="w-100 h-75" style={{ objectFit:"cover" }}/>
         </Col>
         <Col xs={12} lg={6} className="animate__animated animate__slideInRight">
           <h1 className="product-title font-size-48px">{Product.name}</h1>
