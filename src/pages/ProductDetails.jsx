@@ -15,11 +15,11 @@ export default function ProductDetails(props) {
 
   const addToCart = () => {
     if (props.isLogin) {
-      let LoggedInUser = props.Users.find(data => data.id === props.LoggedInUser.id);
+      let LoggedInUser = props.Users.find(data => data.id === props.LoggedInUserId);
       if (LoggedInUser.cart.some(item => item.order === Product.name)) LoggedInUser.cart.find(item => item.order === Product.name).quantity += 1;
       else LoggedInUser.cart.push({image:Product.photo,order:Product.name,quantity:1});
       const updatedUsers = props.Users.map(user => {
-        if (user.id === props.LoggedInUser.id) {
+        if (user.id === props.LoggedInUserId) {
           return {
             ...user,
             cart: LoggedInUser.cart,

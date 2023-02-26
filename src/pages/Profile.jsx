@@ -6,13 +6,13 @@ export default function Profile(props) {
 
   const Products = props.Products;
   const Transactions = props.Transactions;
-  let User = props.LoggedInUser;
+  const LoggedInUser = props.Users.find(data => data.id === props.LoggedInUserId);
 
   let userTransactions = [];
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   for (let transaction of Transactions) {
-    if (transaction.customerId === User.id) {
+    if (transaction.customerId === LoggedInUser.id) {
       for (let product of Products) {
         if (product.name === transaction.order) {
           let userTransaction = {id:transaction.id, name:transaction.order, status:transaction.status, date:new Date(transaction.date), quantity:transaction.quantity, image:product.photo, price:product.price, total:product.price*transaction.quantity};
@@ -32,9 +32,9 @@ export default function Profile(props) {
             <img id="profile-picture" src="/images/profile-picture.webp" alt="Profile" className="rounded me-4 mb-4" style={{ width:"11rem" }}/>
             <div>
               <h5 className="product-title font-size-18px">Full Name</h5>
-              <div className="font-size-18px mb-4">{User.name}</div>
+              <div className="font-size-18px mb-4">{LoggedInUser.name}</div>
               <h5 className="product-title font-size-18px">Email</h5>
-              <div className="font-size-18px mb-4">{User.email}</div>
+              <div className="font-size-18px mb-4">{LoggedInUser.email}</div>
             </div>
           </div>
         </Col>

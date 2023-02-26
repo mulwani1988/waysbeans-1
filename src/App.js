@@ -1,6 +1,6 @@
 import "./App.css";
 import NavbarSection from "./components/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import UsersData from "./data/users.json";
@@ -32,6 +32,7 @@ import SuccessLogoutToast from "./components/SuccessLogoutToast";
 
 function App() {
   const navigate = useNavigate();
+  useEffect(() => window.scroll({top: 0, behavior: "smooth"}));
 
   const [Users, SetUsers] = useState(UsersData);
   const [Transactions, SetTransactions] = useState(TransactionsData);
@@ -40,9 +41,7 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
 
-  const[LoggedInUser, setLoggedInUser] = useState({
-    id:0,
-  });
+  const[LoggedInUserId, setLoggedInUserId] = useState(0);
 
   const [formLogin, setFormLogin] = useState({
     email: "",
@@ -62,9 +61,7 @@ function App() {
       if (User.password === formLogin.password) {
         setIsLogin(true);
         setIsAdmin(User.isAdmin);
-        setLoggedInUser(() => ({
-          id: User.id,
-        }));
+        setLoggedInUserId(User.id);
         settoastSuccessLogin(true);
       }
       else {
@@ -307,7 +304,7 @@ function App() {
         }} 
       />
       <NavbarSection 
-        LoggedInUser={LoggedInUser} 
+        LoggedInUserId={LoggedInUserId} 
         Users={Users} 
         Products={Products}
         showModalLogin={() => setModalLoginShow(true)} 
@@ -331,7 +328,7 @@ function App() {
           showModalLogin={() => setModalLoginShow(true)} 
           Products={Products} 
           Users={Users} 
-          LoggedInUser={LoggedInUser} 
+          LoggedInUserId={LoggedInUserId} 
           SetUsers={SetUsers} 
           setmodalSuccessAddCart={() => setmodalSuccessAddCart(true)}
         />} />
@@ -339,7 +336,7 @@ function App() {
         <Route path="/" element={<CustomerRoute isLogin={isLogin} />}>
           <Route path="/cart" element={<Cart 
             Users={Users} 
-            LoggedInUser={Users.find(data => data.id === LoggedInUser.id)} 
+            LoggedInUserId={LoggedInUserId} 
             Products={Products} 
             SetUsers={SetUsers} 
             Transactions={Transactions} 
@@ -347,7 +344,8 @@ function App() {
             showModalSuccessTransaction={() => setmodalSuccessTransaction(true)} 
           />} />
           <Route path="/profile" element={<Profile 
-            LoggedInUser={Users.find(data => data.id === LoggedInUser.id)} 
+            Users={Users}
+            LoggedInUserId={LoggedInUserId} 
             Transactions={Transactions} 
             Products={Products}
           />} />

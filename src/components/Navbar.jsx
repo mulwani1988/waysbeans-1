@@ -7,7 +7,7 @@ export default function NavbarSection(props) {
   const navigate = useNavigate();
 
   let LoggedInUserCart = [];
-  if (props.isLogin === true && props.isAdmin === false && props.Users.find(data => data.id === props.LoggedInUser.id).cart.length > 0) LoggedInUserCart = props.Users.find(data => data.id === props.LoggedInUser.id).cart;
+  if (props.isLogin === true && props.isAdmin === false && props.Users.find(data => data.id === props.LoggedInUserId).cart.length > 0) LoggedInUserCart = props.Users.find(data => data.id === props.LoggedInUserId).cart;
 
   let LoggedInUserCartUpdate = [];
   for (let cart of LoggedInUserCart) if(props.Products.some(product => product.name === cart.order)) LoggedInUserCartUpdate.push(cart);

@@ -8,7 +8,10 @@ export default function ProductDetails(props) {
   useEffect(() => {document.title = "My Cart | WaysBeans";}, []);
   const navigate = useNavigate();
 
-  const LoggedInUserCart = props.LoggedInUser.cart;
+  console.log(props.Users);
+  console.log(props.LoggedInUserId);
+  const LoggedInUser = props.Users.find(data => data.id === props.LoggedInUserId);
+  const LoggedInUserCart = LoggedInUser.cart;
   const Products = props.Products;
   let userCarts = [];
   for (let cart of LoggedInUserCart) {
@@ -26,7 +29,7 @@ export default function ProductDetails(props) {
     });
     SetUserCarts(updatedUserCarts);
     const updatedUsers = props.Users.map(user => {
-      if (user.id === props.LoggedInUser.id) {
+      if (user.id === props.LoggedInUserId) {
         return {
           ...user,
           cart: updatedUserCarts.map(({price, ...rest}) => rest),
@@ -43,7 +46,7 @@ export default function ProductDetails(props) {
     });
     SetUserCarts(updatedUserCarts);
     const updatedUsers = props.Users.map(user => {
-      if (user.id === props.LoggedInUser.id) {
+      if (user.id === props.LoggedInUserId) {
         return {
           ...user,
           cart: updatedUserCarts.map(({price, ...rest}) => rest),
@@ -57,7 +60,7 @@ export default function ProductDetails(props) {
     const UpdatedUserCart = UserCarts.filter((item, i) => i !== index);
     SetUserCarts(UpdatedUserCart);
     const updatedUsers = props.Users.map(user => {
-      if (user.id === props.LoggedInUser.id) {
+      if (user.id === props.LoggedInUserId) {
         return {
           ...user,
           cart: UpdatedUserCart.map(({price, ...rest}) => rest),
@@ -111,7 +114,7 @@ export default function ProductDetails(props) {
   const handlePay = () => {
     let updatedTransactions = props.Transactions;
     for (let transaction of UserCarts) {
-      transaction.customerId = props.LoggedInUser.id;
+      transaction.customerId = props.LoggedInUserId;
       const DateFull = new Date();
       const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       transaction.date = `${DateFull.getDay()} ${months[DateFull.getMonth()]} ${DateFull.getFullYear()}`;
@@ -124,7 +127,7 @@ export default function ProductDetails(props) {
     updatedTransactions = updatedTransactions.map(({price, image, ...rest}) => rest);
     props.SetTransactions(updatedTransactions);
     const updatedUsers = props.Users.map(user => {
-      if (user.id === props.LoggedInUser.id) {
+      if (user.id === props.LoggedInUserId) {
         return {
           ...user,
           cart: [],
