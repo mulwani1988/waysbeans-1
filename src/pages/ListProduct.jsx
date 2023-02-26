@@ -23,12 +23,15 @@ export default function ProductDetails(props) {
     props.setformUpdateProduct(Product);
     navigate(`/update-product-page/${id}`);
   }
+  
+  const ProductsListSorted = [...ProductsList];
+  ProductsListSorted.sort((a, b) => b.id - a.id);
 
   return (
     <Container>
       <h1 className="custom-margin-top product-title font-size-36px mb-5">List Product</h1>
       {
-        ProductsList.length > 0 ? (
+        ProductsListSorted.length > 0 ? (
           <Table responsive bordered hover className="mx-auto w-100 animate__animated animate__fadeIn">
             <thead style={{ backgroundColor:"#E5E5E5" }}>
               <tr>
@@ -43,7 +46,7 @@ export default function ProductDetails(props) {
             </thead>
             <tbody>
               {
-                ProductsList.map((item, index) => (
+                ProductsListSorted.map((item, index) => (
                   <tr key={item.id}>
                     <td>{index + 1}</td>
                     <td><img src={item.photo} alt={item.name} style={{ width:"7.5rem", height:"10rem", objectFit:"cover" }}/></td>

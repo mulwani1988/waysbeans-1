@@ -5,7 +5,6 @@ import { useEffect } from "react";
 function PageNotFound() {
   useEffect(() => {document.title = "Page Not Found | WaysBeans";}, []);
 
-  console.log("Page Not Found");
   return (
     <>
       <Container>

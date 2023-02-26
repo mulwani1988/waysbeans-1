@@ -8,8 +8,6 @@ export default function ProductDetails(props) {
   useEffect(() => {document.title = "My Cart | WaysBeans";}, []);
   const navigate = useNavigate();
 
-  console.log(props.Users);
-  console.log(props.LoggedInUserId);
   const LoggedInUser = props.Users.find(data => data.id === props.LoggedInUserId);
   const LoggedInUserCart = LoggedInUser.cart;
   const Products = props.Products;
@@ -117,13 +115,14 @@ export default function ProductDetails(props) {
       transaction.customerId = props.LoggedInUserId;
       const DateFull = new Date();
       const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      transaction.date = `${DateFull.getDay()} ${months[DateFull.getMonth()]} ${DateFull.getFullYear()}`;
+      transaction.date = `${DateFull.getDate()} ${months[DateFull.getMonth()]} ${DateFull.getFullYear()}`;
       transaction.id = updatedTransactions.length + 1;
       transaction.status = "Success";
       transaction.address = formPayment.address;
       transaction.postcode = formPayment.postcode;
       updatedTransactions.push(transaction);
     }
+
     updatedTransactions = updatedTransactions.map(({price, image, ...rest}) => rest);
     props.SetTransactions(updatedTransactions);
     const updatedUsers = props.Users.map(user => {

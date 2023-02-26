@@ -144,12 +144,21 @@ function App() {
   };
   const formAddProductHandleOnSubmit = (e) => {
     e.preventDefault();
-    const lastProductId = Products[Products.length - 1].id;
+    console.log(Products);
+    const lastProductIndex = Products.length - 1;
+    console.log(lastProductIndex);
+    const lastProduct = Products[lastProductIndex];
+    console.log(lastProduct);
+    const lastProductId = lastProduct.id;
+    console.log(lastProductId);
     const autoId = lastProductId + 1;
+    console.log(autoId);
     const newProductWithAutoId = {
       ...formAddProduct,
       id: autoId,
       photo: imageUrl,
+      stock: parseInt(formAddProduct.stock),
+      price: parseInt(formAddProduct.price),
     };
     const updatedProducts = [...Products];
     updatedProducts.push(newProductWithAutoId);
@@ -187,6 +196,8 @@ function App() {
     const newProductWithImage = {
       ...formUpdateProduct,
       photo: imageUrl,
+      stock: parseInt(formUpdateProduct.stock),
+      price: parseInt(formUpdateProduct.price),
     };
     const indexToUpdate = Products.findIndex(item => item.id === newProductWithImage.id);
     if (indexToUpdate !== -1) Products.splice(indexToUpdate, 1, newProductWithImage);

@@ -5,7 +5,9 @@ import { useEffect } from "react";
 function Home(props) {
   useEffect(() => {document.title = "WaysBeans";}, []);
 
-  const Products = props.Products;
+  const Products = [...props.Products];
+  Products.sort((a, b) => b.id - a.id);
+
   return (
     <>
       <Container>
