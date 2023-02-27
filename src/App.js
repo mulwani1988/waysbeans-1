@@ -33,7 +33,7 @@ import SuccessLogoutToast from "./components/SuccessLogoutToast";
 
 function App() {
   const navigate = useNavigate();
-  useEffect(() => window.scroll({top: 0, behavior: "smooth"}));
+  useEffect(() => window.scroll({top: 0, behavior: "smooth"}),[]);
 
   const [Users, SetUsers] = useState(UsersData);
   const [Transactions, SetTransactions] = useState(TransactionsData);
@@ -344,6 +344,7 @@ function App() {
           isLogin={isLogin} 
           showModalLogin={() => setModalLoginShow(true)} 
           Products={Products} 
+          SetProducts={SetProducts} 
           Users={Users} 
           LoggedInUserId={LoggedInUserId} 
           SetUsers={SetUsers} 
@@ -355,6 +356,7 @@ function App() {
             Users={Users} 
             LoggedInUserId={LoggedInUserId} 
             Products={Products} 
+            SetProducts={SetProducts} 
             SetUsers={SetUsers} 
             Transactions={Transactions} 
             SetTransactions={SetTransactions} 

@@ -36,6 +36,16 @@ export default function ProductDetails(props) {
       return user;
     });
     props.SetUsers(updatedUsers);
+    const updatedProducts = props.Products.map((product) => {
+      if (product.name === UserCarts[index].order) {
+        return {
+          ...product,
+          stock: product.stock - 1,
+        };
+      }
+      return product;
+    });
+    props.SetProducts(updatedProducts);
   };
   const decreaseQuantity = (index) => {
     const updatedUserCarts = UserCarts.map((cart) => {
@@ -53,6 +63,16 @@ export default function ProductDetails(props) {
       return user;
     });
     props.SetUsers(updatedUsers);
+    const updatedProducts = props.Products.map((product) => {
+      if (product.name === UserCarts[index].order) {
+        return {
+          ...product,
+          stock: product.stock + 1,
+        };
+      }
+      return product;
+    });
+    props.SetProducts(updatedProducts);
   };
   function deleteCart(index) {
     const UpdatedUserCart = UserCarts.filter((item, i) => i !== index);
@@ -67,6 +87,16 @@ export default function ProductDetails(props) {
       return user;
     });
     props.SetUsers(updatedUsers);
+    const updatedProducts = props.Products.map((product) => {
+      if (product.name === UserCarts[index].order) {
+        return {
+          ...product,
+          stock: product.stock + UserCarts[index].quantity,
+        };
+      }
+      return product;
+    });
+    props.SetProducts(updatedProducts);
   }
   const totalQuantity = () => {
     let totalQuantity = [];

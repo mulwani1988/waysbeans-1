@@ -28,6 +28,18 @@ export default function ProductDetails(props) {
         return user;
       });
       props.SetUsers(updatedUsers);
+
+      const updatedProducts = props.Products.map((product) => {
+        if (product.id === Product.id) {
+          return {
+            ...product,
+            stock: product.stock - 1,
+          };
+        }
+        return product;
+      });
+      props.SetProducts(updatedProducts);
+
       props.setmodalSuccessAddCart();
       navigate("/");
     }
