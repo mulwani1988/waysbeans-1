@@ -144,7 +144,6 @@ export default function ProductDetails(props) {
     }
 
     updatedTransactions = updatedTransactions.map(({price, image, ...rest}) => rest);
-    console.log(updatedTransactions);
     props.SetTransactions(updatedTransactions);
     const updatedUsers = props.Users.map(user => {
       if (user.id === props.LoggedInUserId) {
