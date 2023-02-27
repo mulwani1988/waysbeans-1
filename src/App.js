@@ -330,9 +330,7 @@ function App() {
         admin={() => setIsAdmin(true)} 
       />
       <Routes>
-        <Route path="/" element={isAdmin ? <AdminDashboard 
-          Transactions={Transactions} 
-          /> : <Home Products={Products} />} />
+        <Route path="/" element={isAdmin ? <AdminDashboard Transactions={Transactions} /> : <Home Products={Products} />} />
         <Route path="/product-details/:id" element={<ProductDetails 
           isLogin={isLogin} 
           showModalLogin={() => setModalLoginShow(true)} 
