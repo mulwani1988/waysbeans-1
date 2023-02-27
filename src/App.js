@@ -21,6 +21,7 @@ import SuccessAddProductModal from "./components/SuccessAddProductModal";
 import SuccessUpdateProductModal from "./components/SuccessUpdateProductModal";
 import SuccessTransactionModal from "./components/SuccessTransactionModal";
 import SuccessAddCartModal from "./components/SuccessAddCartModal";
+import SuccessRegisterModal from "./components/SuccessRegisterModal";
 import LoginModal from "./components/LoginModal";
 import RegisterModal from "./components/RegisterModal";
 import CustomerRoute from "./components/CustomerRoute";
@@ -122,7 +123,7 @@ function App() {
     }));
 
     setModalRegisterShow(false);
-    setModalLoginShow(true);
+    setmodalSuccessRegister(true);
   };
 
   const [imageUrl, setImageUrl] = useState("/images/product-placeholder.webp");
@@ -219,6 +220,7 @@ function App() {
   const [modalSuccessAddProduct, setmodalSuccessAddProduct] = useState(false);
   const [modalSuccessTransaction, setmodalSuccessTransaction] = useState(false);
   const [modalSuccessAddCart, setmodalSuccessAddCart] = useState(false);
+  const [modalSuccessRegister, setmodalSuccessRegister] = useState(false);
   const [modalLoginShow, setModalLoginShow] = useState(false);
   const [modalRegisterShow, setModalRegisterShow] = useState(false);
   const [modalUnregisteredEmail, setModalUnregisteredEmail] = useState(false);
@@ -240,7 +242,14 @@ function App() {
           show={modalSuccessTransaction} 
           onHide={() => setmodalSuccessTransaction(false)} 
       />
-      <SuccessAddProductModal 
+      <SuccessRegisterModal  
+          show={modalSuccessRegister} 
+          onHide={() => {
+            setmodalSuccessRegister(false);
+            setModalLoginShow(true);
+          }} 
+      />
+      <SuccessAddProductModal
           show={modalSuccessAddProduct} 
           onHide={() => setmodalSuccessAddProduct(false)} 
       />

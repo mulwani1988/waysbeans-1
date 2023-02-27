@@ -2,6 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useEffect, useState } from "react";
 
 import UpdateProfileModal from "../components/UpdateProfileModal";
+import SuccessUpdateProfileModal from "../components/SuccessUpdateProfileModal";
 
 export default function Profile(props) {
   useEffect(() => {document.title = `My Profile | WaysBeans`;}, []);
@@ -70,12 +71,18 @@ export default function Profile(props) {
     }));
 
     setModalUpdateProfile(false);
+    setModalSuccessUpdateProfile(true);
   };
 
   const [modalUpdateProfile, setModalUpdateProfile] = useState(false);
+  const [modalSuccessUpdateProfile, setModalSuccessUpdateProfile] = useState(false);
 
   return (
     <>
+      <SuccessUpdateProfileModal
+          show={modalSuccessUpdateProfile} 
+          onHide={() => setModalSuccessUpdateProfile(false)} 
+      />
       <UpdateProfileModal 
         show={modalUpdateProfile} 
         onHide={() => setModalUpdateProfile(false)} 
