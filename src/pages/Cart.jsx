@@ -21,31 +21,35 @@ export default function ProductDetails(props) {
 
   const [UserCarts, SetUserCarts] = useState(userCartUpdate);
   const increaseQuantity = (index) => {
-    const updatedUserCarts = UserCarts.map((cart) => {
-      if (UserCarts.indexOf(cart) === index) cart.quantity += 1;
-      return cart;
-    });
-    SetUserCarts(updatedUserCarts);
-    const updatedUsers = props.Users.map(user => {
-      if (user.id === props.LoggedInUserId) {
-        return {
-          ...user,
-          cart: updatedUserCarts.map(({price, ...rest}) => rest),
-        };
-      }
-      return user;
-    });
-    props.SetUsers(updatedUsers);
-    const updatedProducts = props.Products.map((product) => {
-      if (product.name === UserCarts[index].order) {
-        return {
-          ...product,
-          stock: product.stock - 1,
-        };
-      }
-      return product;
-    });
-    props.SetProducts(updatedProducts);
+    const ProductToIncrease = Products.find(product => product.name === UserCarts[index].order);
+    if (ProductToIncrease.stock > 0) {
+      const updatedUserCarts = UserCarts.map((cart) => {
+        if (UserCarts.indexOf(cart) === index) cart.quantity += 1;
+        return cart;
+      });
+      SetUserCarts(updatedUserCarts);
+      const updatedUsers = props.Users.map(user => {
+        if (user.id === props.LoggedInUserId) {
+          return {
+            ...user,
+            cart: updatedUserCarts.map(({price, ...rest}) => rest),
+          };
+        }
+        return user;
+      });
+      props.SetUsers(updatedUsers);
+      const updatedProducts = Products.map((product) => {
+        if (product.name === UserCarts[index].order) {
+          return {
+            ...product,
+            stock: product.stock - 1,
+          };
+        }
+        return product;
+      });
+      props.SetProducts(updatedProducts);
+    }
+    else props.setModalOutOfStockShow();
   };
   const decreaseQuantity = (index) => {
     const updatedUserCarts = UserCarts.map((cart) => {
@@ -194,9 +198,7 @@ export default function ProductDetails(props) {
     <>
       <PaymentModal 
         show={modalPaymentShow} 
-        onHide={() => {
-          setModalPaymentShow(false);
-        }} 
+        onHide={() => setModalPaymentShow(false)} 
         total={totalPrice()}
         qty={totalQuantity()} 
         formPayment={formPayment} 

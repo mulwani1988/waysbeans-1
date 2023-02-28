@@ -30,6 +30,7 @@ import UnregisteredEmailModal from "./components/UnregisteredEmailModal";
 import WrongPasswordModal from "./components/WrongPasswordModal";
 import SuccessLoginToast from "./components/SuccessLoginToast";
 import SuccessLogoutToast from "./components/SuccessLogoutToast";
+import OutOfStockModal from './components/OutOfStockModal';
 
 function App() {
   const navigate = useNavigate();
@@ -227,9 +228,14 @@ function App() {
   const [modalWrongPassword, setModalWrongPassword] = useState(false);
   const [toastSuccessLogin, settoastSuccessLogin] = useState(false);
   const [toastSuccessLogout, settoastSuccessLogout] = useState(false);
+  const [modalOutOfStockShow, setModalOutOfStockShow] = useState(false);
 
   return (
     <>
+      <OutOfStockModal 
+        show={modalOutOfStockShow} 
+        onHide={() => setModalOutOfStockShow(false)} 
+      />
       <SuccessLoginToast 
         show={toastSuccessLogin} 
         onClose={() => settoastSuccessLogin(false)} 
@@ -349,6 +355,7 @@ function App() {
           LoggedInUserId={LoggedInUserId} 
           SetUsers={SetUsers} 
           setmodalSuccessAddCart={() => setmodalSuccessAddCart(true)}
+            setModalOutOfStockShow={() => setModalOutOfStockShow(true)}
         />} />
         <Route path="*" element={<PageNotFound />} />
         <Route path="/" element={<CustomerRoute isLogin={isLogin} />}>
@@ -361,6 +368,7 @@ function App() {
             Transactions={Transactions} 
             SetTransactions={SetTransactions} 
             showModalSuccessTransaction={() => setmodalSuccessTransaction(true)} 
+            setModalOutOfStockShow={() => setModalOutOfStockShow(true)}
           />} />
           <Route path="/profile" element={<Profile 
             Users={Users} 

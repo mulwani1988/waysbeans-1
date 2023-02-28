@@ -15,33 +15,36 @@ export default function ProductDetails(props) {
 
   const addToCart = () => {
     if (props.isLogin) {
-      let LoggedInUser = props.Users.find(data => data.id === props.LoggedInUserId);
-      if (LoggedInUser.cart.some(item => item.order === Product.name)) LoggedInUser.cart.find(item => item.order === Product.name).quantity += 1;
-      else LoggedInUser.cart.push({image:Product.photo,order:Product.name,quantity:1});
-      const updatedUsers = props.Users.map(user => {
-        if (user.id === props.LoggedInUserId) {
-          return {
-            ...user,
-            cart: LoggedInUser.cart,
-          };
-        }
-        return user;
-      });
-      props.SetUsers(updatedUsers);
+      if (Product.stock > 0) {
+        let LoggedInUser = props.Users.find(data => data.id === props.LoggedInUserId);
+        if (LoggedInUser.cart.some(item => item.order === Product.name)) LoggedInUser.cart.find(item => item.order === Product.name).quantity += 1;
+        else LoggedInUser.cart.push({image:Product.photo,order:Product.name,quantity:1});
+        const updatedUsers = props.Users.map(user => {
+          if (user.id === props.LoggedInUserId) {
+            return {
+              ...user,
+              cart: LoggedInUser.cart,
+            };
+          }
+          return user;
+        });
+        props.SetUsers(updatedUsers);
 
-      const updatedProducts = props.Products.map((product) => {
-        if (product.id === Product.id) {
-          return {
-            ...product,
-            stock: product.stock - 1,
-          };
-        }
-        return product;
-      });
-      props.SetProducts(updatedProducts);
+        const updatedProducts = Products.map((product) => {
+          if (product.id === Product.id) {
+            return {
+              ...product,
+              stock: product.stock - 1,
+            };
+          }
+          return product;
+        });
+        props.SetProducts(updatedProducts);
 
-      props.setmodalSuccessAddCart();
-      navigate("/");
+        props.setmodalSuccessAddCart();
+        navigate("/");
+      }
+      else props.setModalOutOfStockShow();
     }
     else props.showModalLogin();
   };
