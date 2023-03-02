@@ -62,6 +62,7 @@ function App() {
       User = User[0];
       if (User.password === formLogin.password) {
         setIsLogin(true);
+        
         setIsAdmin(User.isAdmin);
         setLoggedInUserId(User.id);
         settoastSuccessLogin(true);
